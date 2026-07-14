@@ -23,6 +23,11 @@
         <li><a href="#about">About</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li>
+          <button type="button" class="cart-toggle" id="cart-toggle" aria-label="Open cart" aria-expanded="false">
+            Cart <span class="cart-count" id="cart-count">0</span>
+          </button>
+        </li>
         <li><a href="#contact" class="btn btn-small">Reserve</a></li>
       </ul>
     </nav>
@@ -80,37 +85,98 @@
           <p class="eyebrow">Featured Menu</p>
           <h2>Seasonal favorites</h2>
         </div>
-        <div class="menu-grid">
-          <article class="menu-card">
+        <div class="menu-category">
+          <div class="menu-category-head">
+            <h3>Mains</h3>
+          </div>
+          <div class="menu-grid">
+          <article class="menu-card" data-name="Wood-Fire Salmon" data-price="24">
             <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Grilled salmon plate">
             <div class="menu-card-body">
               <div class="menu-card-top">
                 <h3>Wood-Fire Salmon</h3>
-                <span class="price">$24</span>
+                <span class="price">€24</span>
               </div>
               <p>Citrus herb glaze, roasted vegetables, saffron aioli.</p>
+              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
             </div>
           </article>
-          <article class="menu-card">
+          <article class="menu-card" data-name="Stone Oven Pizza" data-price="18">
             <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Margherita pizza">
             <div class="menu-card-body">
               <div class="menu-card-top">
                 <h3>Stone Oven Pizza</h3>
-                <span class="price">$18</span>
+                <span class="price">€18</span>
               </div>
               <p>San Marzano tomatoes, fresh mozzarella, basil oil.</p>
+              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
             </div>
           </article>
-          <article class="menu-card">
+          <article class="menu-card" data-name="Garden Mezze Bowl" data-price="16">
             <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Fresh salad bowl">
             <div class="menu-card-body">
               <div class="menu-card-top">
                 <h3>Garden Mezze Bowl</h3>
-                <span class="price">$16</span>
+                <span class="price">€16</span>
               </div>
               <p>Hummus, falafel, tabbouleh, pickled vegetables, pita.</p>
+              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
             </div>
           </article>
+          </div>
+        </div>
+
+        <div class="menu-category" id="drinks">
+          <div class="menu-category-head">
+            <h3>Drinks <span class="menu-category-sub">مشروبات</span></h3>
+            <p>Refreshments to pair with your meal.</p>
+          </div>
+          <div class="menu-grid menu-grid-drinks">
+            <article class="menu-card menu-card--drink" data-name="Coca-Cola" data-price="2.5">
+              <img src="https://images.unsplash.com/photo-1567705323043-d0e489de300d?auto=format&fit=crop&w=600&q=80" alt="Coca-Cola served with ice" loading="lazy">
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <h3>Coca-Cola</h3>
+                  <span class="price">€2.50</span>
+                </div>
+                <p>Classic cola, served chilled.</p>
+                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              </div>
+            </article>
+            <article class="menu-card menu-card--drink" data-name="Fresh Orange Juice" data-price="3.5">
+              <img src="https://images.unsplash.com/photo-1583161442736-7c853b2e0ed2?auto=format&fit=crop&w=600&q=80" alt="Fresh orange juice" loading="lazy">
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <h3>Fresh Orange Juice</h3>
+                  <span class="price">€3.50</span>
+                </div>
+                <p>Pressed daily from ripe citrus.</p>
+                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              </div>
+            </article>
+            <article class="menu-card menu-card--drink" data-name="Still Water" data-price="1.5">
+              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=600&q=80" alt="Still water bottle" loading="lazy">
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <h3>Still Water</h3>
+                  <span class="price">€1.50</span>
+                </div>
+                <p>Pure still water, 500ml.</p>
+                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              </div>
+            </article>
+            <article class="menu-card menu-card--drink" data-name="Moroccan Mint Tea" data-price="2">
+              <img src="https://images.unsplash.com/photo-1729684748599-2961c2bf01a5?auto=format&fit=crop&w=600&q=80" alt="Moroccan mint tea" loading="lazy">
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <h3>Moroccan Mint Tea</h3>
+                  <span class="price">€2.00</span>
+                </div>
+                <p>Traditional green tea with fresh mint.</p>
+                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -177,6 +243,129 @@
       <a href="#top">Back to top</a>
     </div>
   </footer>
+
+  <button
+    type="button"
+    class="floating-cart-toggle"
+    id="floating-cart-toggle"
+    aria-label="Open cart"
+    aria-expanded="false"
+  >
+    <svg class="floating-cart-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45a2 2 0 0 0 1.74 2.97H19v-2H10.42a.25.25 0 0 1-.22-.37L11 14h7.45a2 2 0 0 0 1.92-1.45L22 6H6.21l-.94-2ZM7 20a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z" fill="currentColor"/>
+    </svg>
+    <span class="cart-count floating-cart-count" id="floating-cart-count" hidden>0</span>
+  </button>
+
+  <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden>
+    <span id="cart-toast-text">Added to cart</span>
+  </div>
+
+  <div class="cart-overlay" id="cart-overlay" hidden></div>
+  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+    <div class="cart-view" id="cart-view">
+      <div class="cart-panel-header">
+        <h3>Your Order</h3>
+        <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">&times;</button>
+      </div>
+      <ul class="cart-items" id="cart-items"></ul>
+      <p class="cart-empty" id="cart-empty">Your cart is empty. Add something from the menu!</p>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cart-total">€0.00</strong>
+        </div>
+        <button type="button" class="btn btn-full" id="cart-checkout" disabled>Proceed to checkout</button>
+        <button type="button" class="btn btn-outline btn-full" id="cart-clear" disabled>Clear cart</button>
+      </div>
+    </div>
+
+    <div class="checkout-view" id="checkout-view" hidden>
+      <div class="cart-panel-header">
+        <button type="button" class="checkout-back" id="checkout-back" aria-label="Back to cart">&larr; Back</button>
+        <button type="button" class="cart-close" id="checkout-close" aria-label="Close checkout">&times;</button>
+      </div>
+
+      <div class="checkout-content">
+        <div class="checkout-intro">
+          <p class="eyebrow">Checkout</p>
+          <h3>Complete your order</h3>
+        </div>
+
+        <section class="checkout-summary" aria-label="Order summary">
+          <h4>Order summary</h4>
+          <ul class="checkout-summary-list" id="checkout-summary-list"></ul>
+          <div class="checkout-summary-total">
+            <span>Total</span>
+            <strong id="checkout-total">€0.00</strong>
+          </div>
+        </section>
+
+        <form class="checkout-form" id="checkout-form">
+          <label>
+            Customer name
+            <input type="text" name="customerName" placeholder="Your full name" required>
+          </label>
+          <label>
+            Phone number
+            <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required>
+          </label>
+
+          <fieldset class="order-type-fieldset">
+            <legend>Order type</legend>
+            <div class="order-type-toggle">
+              <label class="order-type-option">
+                <input type="radio" name="orderType" value="delivery" checked>
+                <span>Delivery</span>
+              </label>
+              <label class="order-type-option">
+                <input type="radio" name="orderType" value="dine-in">
+                <span>Dine-in</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="order-location-fields">
+            <label id="delivery-field" class="order-location-field is-visible">
+              Delivery address
+              <input type="text" name="deliveryAddress" placeholder="Street, building, apartment">
+            </label>
+
+            <label id="table-field" class="order-location-field">
+              Table number
+              <input type="text" name="tableNumber" placeholder="e.g. 12">
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-full">Confirm order</button>
+          <p class="form-message" id="checkout-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  <div class="order-success-modal" id="order-success-modal" hidden aria-hidden="true">
+    <div class="order-success-backdrop" id="order-success-backdrop"></div>
+    <div
+      class="order-success-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="order-success-title"
+    >
+      <div class="order-success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <p class="eyebrow">Order received</p>
+      <h2 id="order-success-title">Thank you for your order! 🍕</h2>
+      <p class="order-success-text">
+        Your order has been prepared. We redirected you to WhatsApp to send the receipt.
+        We will confirm it as soon as possible!
+      </p>
+      <button type="button" class="btn btn-full" id="order-success-close">Back to menu</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
