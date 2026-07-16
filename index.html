@@ -355,8 +355,8 @@
               </label>
 
               <label class="booking-field booking-field--full">
-                <span class="booking-label">Correo electrónico</span>
-                <input type="email" name="email" class="booking-input" placeholder="tu@email.com" required autocomplete="email">
+                <span class="booking-label">Número de teléfono</span>
+                <input type="tel" name="phone" class="booking-input" placeholder="+34 600 000 000" required autocomplete="tel">
               </label>
 
               <button type="submit" class="booking-submit">Reservar</button>
@@ -508,9 +508,9 @@
           <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
       </div>
-      <p class="eyebrow">Pedido recibido</p>
+      <p class="eyebrow" id="order-success-eyebrow">Pedido recibido</p>
       <h2 id="order-success-title">¡Gracias por tu pedido! 🎉</h2>
-      <p class="order-success-text">
+      <p class="order-success-text" id="order-success-text">
         Te hemos redirigido a WhatsApp para enviar los detalles de tu pedido.
         Lo confirmaremos tan pronto como recibamos tu mensaje.
       </p>

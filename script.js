@@ -55,11 +55,37 @@ navLinks.querySelectorAll("a").forEach((link) => {
   });
 });
 
+function formatBookingDateDisplay(isoDate) {
+  if (!isoDate) return "";
+
+  if (selectedBookingDate && formatBookingDate(selectedBookingDate) === isoDate) {
+    return `${selectedBookingDate.getDate()} de ${MONTHS_ES[selectedBookingDate.getMonth()]} de ${selectedBookingDate.getFullYear()}`;
+  }
+
+  const [year, month, day] = isoDate.split("-").map(Number);
+  return `${day} de ${MONTHS_ES[month - 1]} de ${year}`;
+}
+
+function buildWhatsAppReservationMessage({ name, phone, date, time, guests }) {
+  return [
+    "📅 *NUEVA RESERVA — Dar Diafa*",
+    "",
+    `👤 *Nombre:* ${name}`,
+    `📞 *Teléfono:* ${phone}`,
+    `📆 *Fecha:* ${formatBookingDateDisplay(date)}`,
+    `🕐 *Hora:* ${time}`,
+    `👥 *Comensales:* ${guests}`,
+    "",
+    "Por favor, confirmar disponibilidad. ¡Gracias!",
+  ].join("\n");
+}
+
 form?.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const formData = new FormData(form);
   const name = formData.get("name");
+  const phone = formData.get("phone");
   const date = formData.get("date");
   const time = formData.get("time");
   const guests = formData.get("guests");
@@ -76,8 +102,19 @@ form?.addEventListener("submit", (event) => {
     return;
   }
 
-  formMessage.textContent = `¡Gracias, ${name}! Reserva recibida para ${guests} persona(s) el ${date} a las ${time}. Te confirmaremos por correo en breve.`;
-  formMessage.className = "booking-message success";
+  const message = buildWhatsAppReservationMessage({
+    name,
+    phone,
+    date,
+    time,
+    guests: `${guests} persona(s)`,
+  });
+
+  openWhatsAppOrder(message);
+  showSuccessModal("reservation");
+  formMessage.textContent = "";
+  formMessage.className = "booking-message";
+
   form.reset();
   if (bookingDateInput && selectedBookingDate) {
     bookingDateInput.value = formatBookingDate(selectedBookingDate);
@@ -334,7 +371,39 @@ function buildWhatsAppOrderMessage({ customerName, phone, orderType, location, i
 
 function openWhatsAppOrder(message) {
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank", "noopener,noreferrer");
+  const opened = window.open(url, "_blank", "noopener,noreferrer");
+  if (!opened) {
+    window.location.href = url;
+  }
+}
+
+const orderSuccessEyebrow = document.getElementById("order-success-eyebrow");
+const orderSuccessTitle = document.getElementById("order-success-title");
+const orderSuccessText = document.getElementById("order-success-text");
+const orderSuccessCloseBtn = document.getElementById("order-success-close");
+
+const SUCCESS_COPY = {
+  order: {
+    eyebrow: "Pedido recibido",
+    title: "¡Gracias por tu pedido! 🎉",
+    text: "Te hemos redirigido a WhatsApp para enviar los detalles de tu pedido. Lo confirmaremos tan pronto como recibamos tu mensaje.",
+    close: "Volver a la carta",
+  },
+  reservation: {
+    eyebrow: "Reserva recibida",
+    title: "¡Gracias por tu reserva! 🎉",
+    text: "Te hemos redirigido a WhatsApp para confirmar tu reserva. Lo confirmaremos tan pronto como recibamos tu mensaje.",
+    close: "Volver",
+  },
+};
+
+function showSuccessModal(type = "order") {
+  const copy = SUCCESS_COPY[type] || SUCCESS_COPY.order;
+  if (orderSuccessEyebrow) orderSuccessEyebrow.textContent = copy.eyebrow;
+  if (orderSuccessTitle) orderSuccessTitle.textContent = copy.title;
+  if (orderSuccessText) orderSuccessText.textContent = copy.text;
+  if (orderSuccessCloseBtn) orderSuccessCloseBtn.textContent = copy.close;
+  showOrderSuccessModal();
 }
 
 function showOrderSuccessModal() {
@@ -539,11 +608,8 @@ checkoutForm.addEventListener("submit", (event) => {
   });
 
   setPanelOpen(false);
-  showOrderSuccessModal();
-
-  setTimeout(() => {
-    openWhatsAppOrder(message);
-  }, 3000);
+  openWhatsAppOrder(message);
+  showSuccessModal("order");
 
   clearCart();
   checkoutForm.reset();
