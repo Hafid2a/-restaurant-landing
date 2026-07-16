@@ -44,6 +44,10 @@ navToggle.addEventListener("click", () => {
   navToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
+window.addEventListener("scroll", () => {
+  document.querySelector(".header")?.classList.toggle("scrolled", window.scrollY > 60);
+}, { passive: true });
+
 navLinks.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.classList.remove("open");
@@ -51,15 +55,154 @@ navLinks.querySelectorAll("a").forEach((link) => {
   });
 });
 
-form.addEventListener("submit", (event) => {
+form?.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const formData = new FormData(form);
   const name = formData.get("name");
+  const date = formData.get("date");
+  const time = formData.get("time");
+  const guests = formData.get("guests");
 
-  formMessage.textContent = `Thanks ${name}! Your reservation request was received. We will confirm by email shortly.`;
-  formMessage.className = "form-message success";
+  if (!date) {
+    formMessage.textContent = "Selecciona una fecha en el calendario.";
+    formMessage.className = "booking-message error";
+    return;
+  }
+
+  if (!time) {
+    formMessage.textContent = "Selecciona una hora para tu reserva.";
+    formMessage.className = "booking-message error";
+    return;
+  }
+
+  formMessage.textContent = `¡Gracias, ${name}! Reserva recibida para ${guests} persona(s) el ${date} a las ${time}. Te confirmaremos por correo en breve.`;
+  formMessage.className = "booking-message success";
   form.reset();
+  if (bookingDateInput && selectedBookingDate) {
+    bookingDateInput.value = formatBookingDate(selectedBookingDate);
+  }
+});
+
+const bookingCalendarEl = document.getElementById("booking-calendar");
+const bookingDateInput = document.getElementById("booking-date");
+const waitlistBtn = document.getElementById("waitlist-btn");
+const groupBtn = document.getElementById("group-btn");
+
+const MONTHS_ES = [
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+];
+const WEEKDAYS_ES = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
+
+let calendarView = new Date();
+let selectedBookingDate = null;
+
+function formatBookingDate(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function isSameDay(a, b) {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+function renderBookingCalendar() {
+  if (!bookingCalendarEl) return;
+
+  const year = calendarView.getFullYear();
+  const month = calendarView.getMonth();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const firstDay = new Date(year, month, 1);
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let html = `
+    <div class="booking-cal-header">
+      <span class="booking-cal-month">${MONTHS_ES[month]} ${year}</span>
+      <div class="booking-cal-nav">
+        <button type="button" data-cal-nav="-1" aria-label="Mes anterior">‹</button>
+        <button type="button" data-cal-nav="1" aria-label="Mes siguiente">›</button>
+      </div>
+    </div>
+    <div class="booking-cal-weekdays">
+      ${WEEKDAYS_ES.map((day) => `<span>${day}</span>`).join("")}
+    </div>
+    <div class="booking-cal-days">
+  `;
+
+  for (let i = 0; i < startOffset; i += 1) {
+    html += `<button type="button" class="booking-cal-day is-other-month" disabled></button>`;
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, month, day);
+    date.setHours(0, 0, 0, 0);
+    const isPast = date < today;
+    const isSelected = selectedBookingDate && isSameDay(date, selectedBookingDate);
+    const classes = [
+      "booking-cal-day",
+      isPast ? "is-past" : "",
+      isSelected ? "is-selected" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    html += `<button type="button" class="${classes}" data-date="${formatBookingDate(date)}" ${isPast ? "disabled" : ""}>${day}</button>`;
+  }
+
+  html += `</div>`;
+  bookingCalendarEl.innerHTML = html;
+}
+
+function initBookingCalendar() {
+  if (!bookingCalendarEl) return;
+
+  selectedBookingDate = new Date();
+  selectedBookingDate.setHours(0, 0, 0, 0);
+  calendarView = new Date(selectedBookingDate);
+  if (bookingDateInput) {
+    bookingDateInput.value = formatBookingDate(selectedBookingDate);
+  }
+  renderBookingCalendar();
+
+  bookingCalendarEl.addEventListener("click", (event) => {
+    const navBtn = event.target.closest("[data-cal-nav]");
+    if (navBtn) {
+      calendarView.setMonth(calendarView.getMonth() + Number(navBtn.dataset.calNav));
+      renderBookingCalendar();
+      return;
+    }
+
+    const dayBtn = event.target.closest("[data-date]");
+    if (!dayBtn || dayBtn.disabled) return;
+
+    const [y, m, d] = dayBtn.dataset.date.split("-").map(Number);
+    selectedBookingDate = new Date(y, m - 1, d);
+    if (bookingDateInput) {
+      bookingDateInput.value = dayBtn.dataset.date;
+    }
+    renderBookingCalendar();
+  });
+}
+
+initBookingCalendar();
+
+waitlistBtn?.addEventListener("click", () => {
+  formMessage.textContent = "Solicitud de lista de espera recibida. Te contactaremos si hay disponibilidad.";
+  formMessage.className = "booking-message success";
+});
+
+groupBtn?.addEventListener("click", () => {
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, me gustaría hacer una solicitud de reserva para un grupo en Dar Diafa.")}`, "_blank", "noopener,noreferrer");
 });
 
 function triggerQtyFeedback(itemName) {
@@ -111,7 +254,7 @@ function addToCart(name, price) {
 }
 
 function showCartToast(itemName) {
-  cartToastText.textContent = `${itemName} added to cart`;
+  cartToastText.textContent = `${itemName} añadido al carrito`;
   cartToast.hidden = false;
   cartToast.classList.add("show");
 
@@ -165,8 +308,8 @@ function formatPrice(amount) {
 }
 
 function buildWhatsAppOrderMessage({ customerName, phone, orderType, location, items, total }) {
-  const orderTypeLabel = orderType === "delivery" ? "Delivery" : "Dine-in";
-  const locationLabel = orderType === "delivery" ? "Address" : "Table";
+  const orderTypeLabel = orderType === "delivery" ? "A domicilio" : "En el local";
+  const locationLabel = orderType === "delivery" ? "Dirección" : "Mesa";
   const itemLines = items
     .map(
       (item) =>
@@ -175,14 +318,14 @@ function buildWhatsAppOrderMessage({ customerName, phone, orderType, location, i
     .join("\n");
 
   return [
-    "🍽️ *NEW ORDER — Saffron Table*",
+    "🍽️ *NUEVO PEDIDO — Dar Diafa*",
     "",
-    `👤 *Customer:* ${customerName}`,
-    `📞 *Phone:* ${phone}`,
-    `🛵 *Order type:* ${orderTypeLabel}`,
+    `👤 *Cliente:* ${customerName}`,
+    `📞 *Teléfono:* ${phone}`,
+    `🛵 *Tipo de pedido:* ${orderTypeLabel}`,
     `📍 *${locationLabel}:* ${location}`,
     "",
-    "*Items:*",
+    "*Platos:*",
     itemLines,
     "",
     `💰 *Total:* ${formatPrice(total)}`,
@@ -239,12 +382,12 @@ function renderCart() {
             <span class="cart-item-line-total">${formatPrice(item.price * item.quantity)}</span>
           </div>
           <div class="cart-item-actions">
-            <div class="qty-stepper" aria-label="Quantity for ${item.name}">
-              <button type="button" class="qty-btn qty-btn--decrease" data-action="decrease" aria-label="Decrease ${item.name}">
+            <div class="qty-stepper" aria-label="Cantidad de ${item.name}">
+              <button type="button" class="qty-btn qty-btn--decrease" data-action="decrease" aria-label="Reducir ${item.name}">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
               </button>
               <span class="qty-value">${item.quantity}</span>
-              <button type="button" class="qty-btn qty-btn--increase" data-action="increase" aria-label="Increase ${item.name}">
+              <button type="button" class="qty-btn qty-btn--increase" data-action="increase" aria-label="Aumentar ${item.name}">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
               </button>
             </div>
@@ -382,7 +525,7 @@ checkoutForm.addEventListener("submit", (event) => {
   const location =
     orderType === "delivery"
       ? formData.get("deliveryAddress")
-      : `Table ${formData.get("tableNumber")}`;
+      : `Mesa ${formData.get("tableNumber")}`;
   const orderItems = cart.map((item) => ({ ...item }));
   const total = getCartTotal();
 
@@ -420,3 +563,30 @@ document.addEventListener("keydown", (event) => {
 
 setOrderType("delivery");
 renderCart();
+
+const menuSidebarLinks = document.querySelectorAll(".menu-sidebar-link");
+const menuCategories = document.querySelectorAll(".menu-category[id]");
+
+menuSidebarLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    menuSidebarLinks.forEach((item) => item.classList.remove("is-active"));
+    link.classList.add("is-active");
+  });
+});
+
+if (menuCategories.length && menuSidebarLinks.length) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        menuSidebarLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+        });
+      });
+    },
+    { rootMargin: "-30% 0px -55% 0px", threshold: 0 }
+  );
+
+  menuCategories.forEach((section) => observer.observe(section));
+}

@@ -1,246 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Saffron Table — Modern Mediterranean restaurant. Reserve your table today.">
-  <title>Saffron Table | Mediterranean Restaurant</title>
+  <meta name="description" content="Dar Diafa — Restaurante marroquí premium en España. Reserva tu mesa y descubre la auténtica hospitalidad de Marruecos.">
+  <title>Dar Diafa | Restaurante Marroquí Premium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="header" id="top">
-    <nav class="nav container">
-      <a class="logo" href="#top">Saffron<span>Table</span></a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <nav class="nav">
+      <a class="logo" href="#top">Dar Diafa</a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#menu">Carta</a></li>
+        <li><a href="#contact">Reservar</a></li>
         <li>
-          <button type="button" class="cart-toggle" id="cart-toggle" aria-label="Open cart" aria-expanded="false">
-            Cart <span class="cart-count" id="cart-count">0</span>
+          <button type="button" class="cart-toggle" id="cart-toggle" aria-label="Abrir carrito" aria-expanded="false">
+            Carrito <span class="cart-count" id="cart-count">0</span>
           </button>
         </li>
-        <li><a href="#contact" class="btn btn-small">Reserve</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-overlay"></div>
-      <div class="hero-content container">
-        <p class="eyebrow">Mediterranean Kitchen · Since 2018</p>
-        <h1>Where every meal feels like a celebration</h1>
-        <p class="hero-text">
-          Fresh ingredients, wood-fire flavors, and warm hospitality in the heart of the city.
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          <span>Restaurante Marroquí</span>
+          <span>de Alta Cocina</span>
+          <span class="hero-brand">Dar Diafa</span>
+        </h1>
+        <p class="hero-lead">
+          La gastronomía marroquí es una de las cocinas más ricas y diversas del mundo,
+          moldeada por siglos de intercambio cultural.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn">Book a Table</a>
-          <a href="#menu" class="btn btn-outline">View Menu</a>
+          <a href="#menu" class="btn-cta">Ver carta</a>
+          <a href="#contact" class="btn-cta">Reservar</a>
         </div>
       </div>
     </section>
 
-    <section class="about section" id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80" alt="Restaurant interior with warm lighting">
+    <section class="story section" id="about">
+      <div class="container story-grid">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=80" alt="Interior elegante de restaurante marroquí">
         </div>
-        <div class="about-content">
-          <p class="eyebrow">Our Story</p>
-          <h2>Crafted with passion, served with soul</h2>
-          <p>
-            At Saffron Table, we bring the sun-drenched flavors of the Mediterranean to your plate.
-            Every dish is prepared daily using local produce and family recipes passed down for generations.
+        <div class="story-content">
+          <p class="story-text">
+            Condimentada con ingredientes de las culturas bereber, árabe y mediterránea,
+            la cocina marroquí es verdaderamente única. Su sencillez y refinamiento se
+            unen en sabores distintivos, donde las especias y condimentos desempeñan
+            un papel protagonista.
           </p>
-          <ul class="about-stats">
-            <li>
-              <strong>12+</strong>
-              <span>Signature dishes</span>
-            </li>
-            <li>
-              <strong>4.9</strong>
-              <span>Guest rating</span>
-            </li>
-            <li>
-              <strong>7</strong>
-              <span>Days open</span>
-            </li>
-          </ul>
+          <p class="story-text story-text--emphasis">
+            En Dar Diafa honramos esa tradición con producto de temporada, recetas de
+            autor y la calidez de una hospitalidad que convierte cada comida en una
+            experiencia memorable.
+          </p>
+          <div class="story-actions">
+            <a href="#menu" class="btn-cta">Ver carta</a>
+            <a href="#contact" class="btn-cta">Reservar</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="menu section section-dark" id="menu">
+    <section class="menu section" id="menu">
       <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Featured Menu</p>
-          <h2>Seasonal favorites</h2>
-        </div>
-        <div class="menu-category">
-          <div class="menu-category-head">
-            <h3>Mains</h3>
-          </div>
-          <div class="menu-grid">
-          <article class="menu-card" data-name="Wood-Fire Salmon" data-price="24">
-            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Grilled salmon plate">
-            <div class="menu-card-body">
-              <div class="menu-card-top">
-                <h3>Wood-Fire Salmon</h3>
-                <span class="price">€24</span>
-              </div>
-              <p>Citrus herb glaze, roasted vegetables, saffron aioli.</p>
-              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
-            </div>
-          </article>
-          <article class="menu-card" data-name="Stone Oven Pizza" data-price="18">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Margherita pizza">
-            <div class="menu-card-body">
-              <div class="menu-card-top">
-                <h3>Stone Oven Pizza</h3>
-                <span class="price">€18</span>
-              </div>
-              <p>San Marzano tomatoes, fresh mozzarella, basil oil.</p>
-              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
-            </div>
-          </article>
-          <article class="menu-card" data-name="Garden Mezze Bowl" data-price="16">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Fresh salad bowl">
-            <div class="menu-card-body">
-              <div class="menu-card-top">
-                <h3>Garden Mezze Bowl</h3>
-                <span class="price">€16</span>
-              </div>
-              <p>Hummus, falafel, tabbouleh, pickled vegetables, pita.</p>
-              <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
-            </div>
-          </article>
-          </div>
+        <div class="section-head section-head--menu">
+          <h2>Carta</h2>
         </div>
 
-        <div class="menu-category" id="drinks">
-          <div class="menu-category-head">
-            <h3>Drinks <span class="menu-category-sub">مشروبات</span></h3>
-            <p>Refreshments to pair with your meal.</p>
-          </div>
-          <div class="menu-grid menu-grid-drinks">
-            <article class="menu-card menu-card--drink" data-name="Coca-Cola" data-price="2.5">
-              <img src="https://images.unsplash.com/photo-1567705323043-d0e489de300d?auto=format&fit=crop&w=600&q=80" alt="Coca-Cola served with ice" loading="lazy">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <h3>Coca-Cola</h3>
-                  <span class="price">€2.50</span>
-                </div>
-                <p>Classic cola, served chilled.</p>
-                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+        <div class="menu-layout">
+          <aside class="menu-sidebar" aria-label="Categorías de la carta">
+            <p class="menu-sidebar-title">Menú</p>
+            <p class="menu-sidebar-hours">Vie 12:00 – 23:00</p>
+            <nav class="menu-sidebar-nav">
+              <a href="#especialidades" class="menu-sidebar-link is-active">Especialidades Marroquís</a>
+              <a href="#tacos" class="menu-sidebar-link">Tacos</a>
+              <a href="#postres" class="menu-sidebar-link">Postres</a>
+              <a href="#bebidas" class="menu-sidebar-link">Bebidas</a>
+            </nav>
+          </aside>
+
+          <div class="menu-content">
+            <div class="menu-category" id="especialidades">
+              <div class="menu-category-head">
+                <h3>Especialidades Marroquís</h3>
+                <p>Guisos, cuscús y platos tradicionales preparados al estilo marroquí.</p>
               </div>
-            </article>
-            <article class="menu-card menu-card--drink" data-name="Fresh Orange Juice" data-price="3.5">
-              <img src="https://images.unsplash.com/photo-1583161442736-7c853b2e0ed2?auto=format&fit=crop&w=600&q=80" alt="Fresh orange juice" loading="lazy">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <h3>Fresh Orange Juice</h3>
-                  <span class="price">€3.50</span>
-                </div>
-                <p>Pressed daily from ripe citrus.</p>
-                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              <div class="menu-grid">
+                <article class="menu-card" data-name="Tajin Ternera" data-price="12.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Tajin de ternera con ciruelas y almendras">
+                    <span class="price-tag">€12.50</span>
+                    <span class="menu-card-label">Tajin</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Tajin Ternera</h3>
+                    <p>Ración de guiso de ternera al estilo marroquí, con ciruelas y almendras.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Harira" data-price="4.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Harira, sopa marroquí tradicional">
+                    <span class="price-tag">€4.50</span>
+                    <span class="menu-card-label">Sopa</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Harira</h3>
+                    <p>Sopa marroquí con tomate, apio, garbanzos, fideos y trozos de carne.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Cuscús Pollo (Solo los Viernes)" data-price="13">
+                  <div class="menu-card-media">
+                    <img src="images/couscous-marroqui.png" alt="Cuscús marroquí tradicional con verduras en tagine de barro">
+                    <span class="price-tag">€13.00</span>
+                    <span class="menu-card-label">Cuscús</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Cuscús Pollo <span class="menu-card-note">(Solo los Viernes)</span></h3>
+                    <p>Cuscús de trigo en granos muy finos con pollo y verduras (zanahoria, calabaza y más).</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Pastela de Pollo" data-price="5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" alt="Pastela de pollo crujiente">
+                    <span class="price-tag">€5.00</span>
+                    <span class="menu-card-label">Pastela</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Pastela de Pollo</h3>
+                    <p>Masa filo rellena de pollo. Muy típico de Marruecos. Se puede pedir con azúcar glass.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Medio Pollo Asado" data-price="11">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1598103442097-8b743abd2710?auto=format&fit=crop&w=600&q=80" alt="Medio pollo asado al estilo marroquí">
+                    <span class="price-tag">€11.00</span>
+                    <span class="menu-card-label">Asado</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Medio Pollo Asado</h3>
+                    <p>Medio pollo asado en horno al estilo marroquí, con su salsa de aceitunas y especias.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Cuscús Ternera (Solo los Viernes)" data-price="13">
+                  <div class="menu-card-media">
+                    <img src="images/couscous-marroqui.png" alt="Cuscús marroquí tradicional con ternera y verduras en tagine de barro">
+                    <span class="price-tag">€13.00</span>
+                    <span class="menu-card-label">Cuscús</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Cuscús Ternera <span class="menu-card-note">(Solo los Viernes)</span></h3>
+                    <p>Cuscús de trigo en granos muy finos con ternera y verduras de temporada.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
               </div>
-            </article>
-            <article class="menu-card menu-card--drink" data-name="Still Water" data-price="1.5">
-              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=600&q=80" alt="Still water bottle" loading="lazy">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <h3>Still Water</h3>
-                  <span class="price">€1.50</span>
-                </div>
-                <p>Pure still water, 500ml.</p>
-                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+            </div>
+
+            <div class="menu-category" id="tacos">
+              <div class="menu-category-head">
+                <h3>Tacos</h3>
+                <p>Carne marinada y especiada, servida en raciones generosas.</p>
               </div>
-            </article>
-            <article class="menu-card menu-card--drink" data-name="Moroccan Mint Tea" data-price="2">
-              <img src="https://images.unsplash.com/photo-1729684748599-2961c2bf01a5?auto=format&fit=crop&w=600&q=80" alt="Moroccan mint tea" loading="lazy">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <h3>Moroccan Mint Tea</h3>
-                  <span class="price">€2.00</span>
-                </div>
-                <p>Traditional green tea with fresh mint.</p>
-                <button type="button" class="btn btn-small add-to-cart-btn">Add to cart</button>
+              <div class="menu-grid">
+                <article class="menu-card" data-name="Tacos de Ternera, 500 Gr Aprox" data-price="8">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" alt="Tacos de ternera marroquí">
+                    <span class="price-tag">€8.00</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Tacos de Ternera, 500 Gr Aprox</h3>
+                    <p>Tacos de ternera marinada al estilo marroquí, ración aproximada de 500 g.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Tacos Mixtos, 500 Gr Aprox" data-price="7.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=600&q=80" alt="Tacos mixtos de carne">
+                    <span class="price-tag">€7.50</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Tacos Mixtos, 500 Gr Aprox</h3>
+                    <p>Mezcla de carnes marinadas y especiadas, ración aproximada de 500 g.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Tacos de Pollo" data-price="7.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1529006557810-274b9b4c7d8d?auto=format&fit=crop&w=600&q=80" alt="Tacos de pollo marroquí">
+                    <span class="price-tag">€7.50</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Tacos de Pollo</h3>
+                    <p>Tacos de pollo marinado con especias marroquíes, jugoso y aromático.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
               </div>
-            </article>
+            </div>
+
+            <div class="menu-category" id="postres">
+              <div class="menu-category-head">
+                <h3>Postres</h3>
+                <p>Dulces tradicionales para cerrar la comida con elegancia.</p>
+              </div>
+              <div class="menu-grid">
+                <article class="menu-card" data-name="Milhojas" data-price="3.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1624353365286-3f8d62dae39b?auto=format&fit=crop&w=600&q=80" alt="Milhojas de hojaldre con crema">
+                    <span class="price-tag">€3.50</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Milhojas</h3>
+                    <p>Pastelería fina de hojaldre crujiente con crema, clásico postre de la casa.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Pastas de Té" data-price="1.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db9b?auto=format&fit=crop&w=600&q=80" alt="Pastas de té marroquíes">
+                    <span class="price-tag">€1.50</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Pastas de Té</h3>
+                    <p>Galletas marroquíes aromáticas, perfectas para acompañar el té de menta.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Yogur Casero" data-price="2">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Yogur casero cremoso">
+                    <span class="price-tag">€2.00</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Yogur Casero</h3>
+                    <p>Yogur casero cremoso preparado al estilo tradicional.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="menu-category" id="bebidas">
+              <div class="menu-category-head">
+                <h3>Bebidas</h3>
+                <p>Refrescantes acompañamientos para tu comida.</p>
+              </div>
+              <div class="menu-grid menu-grid-drinks">
+                <article class="menu-card" data-name="Té de Menta Tradicional Marroquí" data-price="2.5">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1729684748599-2961c2bf01a5?auto=format&fit=crop&w=600&q=80" alt="Té de menta tradicional marroquí" loading="lazy">
+                    <span class="price-tag">€2.50</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Té de Menta Tradicional Marroquí</h3>
+                    <p>Té verde infusionado con menta fresca, servido al estilo tradicional con servicio alto.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+                <article class="menu-card" data-name="Batido de Aguacate y Almendras" data-price="4">
+                  <div class="menu-card-media">
+                    <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=600&q=80" alt="Batido de aguacate y almendras" loading="lazy">
+                    <span class="price-tag">€4.00</span>
+                  </div>
+                  <div class="menu-card-body">
+                    <h3>Batido de Aguacate y Almendras</h3>
+                    <p>Cremoso batido de aguacate con leche fría, almendras trituradas y un toque de agua de azahar.</p>
+                    <button type="button" class="btn btn-small add-to-cart-btn">Añadir al carrito</button>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="gallery section" id="gallery">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Atmosphere</p>
-          <h2>A space made for memorable evenings</h2>
-        </div>
-        <div class="gallery-grid">
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=700&q=80" alt="Chef preparing food">
-          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=700&q=80" alt="Dining table setup">
-          <img src="https://images.unsplash.com/photo-1424847651672-bfcbf828a33a?auto=format&fit=crop&w=700&q=80" alt="Guests enjoying dinner">
-        </div>
+    <section class="gallery section gallery--wide" id="gallery">
+      <div class="gallery-strip">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80" alt="Chef preparando platos marroquíes">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Mesa servida con elegancia">
+        <img src="https://images.unsplash.com/photo-1424847651672-bfcbf828a33a?auto=format&fit=crop&w=900&q=80" alt="Comensales disfrutando de la cena">
       </div>
     </section>
 
-    <section class="contact section section-dark" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow">Reservations</p>
-          <h2>Book your table tonight</h2>
-          <p>Open daily from 11:00 AM to 11:00 PM. Walk-ins welcome on weekdays.</p>
-          <ul class="contact-info">
-            <li><strong>Address:</strong> 42 Olive Street, Downtown</li>
-            <li><strong>Phone:</strong> +1 (555) 012-3456</li>
-            <li><strong>Email:</strong> hello@saffrontable.com</li>
-          </ul>
+    <section class="booking section" id="contact">
+      <div class="booking-wrap">
+        <a href="#menu" class="booking-menu-link">Menú del día</a>
+        <h2 class="booking-title">Reservar ahora</h2>
+
+        <div class="booking-layout">
+          <div class="booking-calendar" id="booking-calendar" aria-label="Seleccionar fecha"></div>
+
+          <div class="booking-form-col">
+            <form class="booking-form" id="reservation-form">
+              <input type="hidden" name="date" id="booking-date" value="">
+
+              <div class="booking-fields-row">
+                <label class="booking-field">
+                  <span class="booking-label">Comensales</span>
+                  <select name="guests" class="booking-select" required>
+                    <option value="1">1 persona</option>
+                    <option value="2" selected>2 personas</option>
+                    <option value="3">3 personas</option>
+                    <option value="4">4 personas</option>
+                    <option value="5">5 personas</option>
+                    <option value="6">6 personas</option>
+                    <option value="7">7+ personas</option>
+                  </select>
+                </label>
+                <label class="booking-field">
+                  <span class="booking-label">Hora</span>
+                  <select name="time" class="booking-select" required>
+                    <option value="">Seleccionar</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="booking-field booking-field--full">
+                <span class="booking-label">Nombre completo</span>
+                <input type="text" name="name" class="booking-input" placeholder="Tu nombre" required autocomplete="name">
+              </label>
+
+              <label class="booking-field booking-field--full">
+                <span class="booking-label">Correo electrónico</span>
+                <input type="email" name="email" class="booking-input" placeholder="tu@email.com" required autocomplete="email">
+              </label>
+
+              <button type="submit" class="booking-submit">Reservar</button>
+              <p class="booking-message" id="form-message" aria-live="polite"></p>
+            </form>
+
+            <div class="booking-waitlist">
+              <p class="booking-waitlist-title">Apúntate a la lista de espera</p>
+              <button type="button" class="booking-alt-btn" id="waitlist-btn">Lista de espera</button>
+              <button type="button" class="booking-alt-btn" id="group-btn">Solicitud de grupo</button>
+            </div>
+          </div>
         </div>
-        <form class="contact-form" id="reservation-form">
-          <label>
-            Full name
-            <input type="text" name="name" placeholder="Your name" required>
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="you@email.com" required>
-          </label>
-          <label>
-            Date & time
-            <input type="datetime-local" name="datetime" required>
-          </label>
-          <label>
-            Guests
-            <select name="guests" required>
-              <option value="">Select</option>
-              <option value="2">2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4 guests</option>
-              <option value="5">5+ guests</option>
-            </select>
-          </label>
-          <button type="submit" class="btn btn-full">Confirm Reservation</button>
-          <p class="form-message" id="form-message" aria-live="polite"></p>
-        </form>
+
+        <p class="booking-footer">
+          <span>Dar Diafa</span> significa hospitalidad marroquí ❤
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <p>&copy; 2026 Saffron Table. Portfolio demo by Said Essabery.</p>
-      <a href="#top">Back to top</a>
+      <div class="footer-brand">
+        <p class="footer-logo">Dar Diafa</p>
+        <p>Restaurante marroquí en Madrid</p>
+      </div>
+      <div class="footer-contact">
+        <p><a href="tel:+34624877121">(+34) 624 877 121</a></p>
+        <p><a href="mailto:reservas@dardiafa.es">reservas@dardiafa.es</a></p>
+        <p>C/ Alhambra, 12 · Madrid</p>
+      </div>
+    </div>
+    <div class="container footer-copy">
+      <p>&copy; 2026 Dar Diafa. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -248,7 +399,7 @@
     type="button"
     class="floating-cart-toggle"
     id="floating-cart-toggle"
-    aria-label="Open cart"
+    aria-label="Abrir carrito"
     aria-expanded="false"
   >
     <svg class="floating-cart-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -258,42 +409,42 @@
   </button>
 
   <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden>
-    <span id="cart-toast-text">Added to cart</span>
+    <span id="cart-toast-text">Añadido al carrito</span>
   </div>
 
   <div class="cart-overlay" id="cart-overlay" hidden></div>
   <aside class="cart-panel" id="cart-panel" aria-hidden="true">
     <div class="cart-view" id="cart-view">
       <div class="cart-panel-header">
-        <h3>Your Order</h3>
-        <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">&times;</button>
+        <h3>Tu Pedido</h3>
+        <button type="button" class="cart-close" id="cart-close" aria-label="Cerrar carrito">&times;</button>
       </div>
       <ul class="cart-items" id="cart-items"></ul>
-      <p class="cart-empty" id="cart-empty">Your cart is empty. Add something from the menu!</p>
+      <p class="cart-empty" id="cart-empty">Tu carrito está vacío. ¡Añade algo de la carta!</p>
       <div class="cart-footer">
         <div class="cart-total">
           <span>Total</span>
           <strong id="cart-total">€0.00</strong>
         </div>
-        <button type="button" class="btn btn-full" id="cart-checkout" disabled>Proceed to checkout</button>
-        <button type="button" class="btn btn-outline btn-full" id="cart-clear" disabled>Clear cart</button>
+        <button type="button" class="btn btn-full" id="cart-checkout" disabled>Proceder al pago</button>
+        <button type="button" class="btn btn-outline btn-full" id="cart-clear" disabled>Vaciar carrito</button>
       </div>
     </div>
 
     <div class="checkout-view" id="checkout-view" hidden>
       <div class="cart-panel-header">
-        <button type="button" class="checkout-back" id="checkout-back" aria-label="Back to cart">&larr; Back</button>
-        <button type="button" class="cart-close" id="checkout-close" aria-label="Close checkout">&times;</button>
+        <button type="button" class="checkout-back" id="checkout-back" aria-label="Volver al carrito">&larr; Volver</button>
+        <button type="button" class="cart-close" id="checkout-close" aria-label="Cerrar pago">&times;</button>
       </div>
 
       <div class="checkout-content">
         <div class="checkout-intro">
-          <p class="eyebrow">Checkout</p>
-          <h3>Complete your order</h3>
+          <p class="eyebrow">Pago</p>
+          <h3>Completa tu pedido</h3>
         </div>
 
-        <section class="checkout-summary" aria-label="Order summary">
-          <h4>Order summary</h4>
+        <section class="checkout-summary" aria-label="Resumen del pedido">
+          <h4>Resumen del pedido</h4>
           <ul class="checkout-summary-list" id="checkout-summary-list"></ul>
           <div class="checkout-summary-total">
             <span>Total</span>
@@ -303,41 +454,41 @@
 
         <form class="checkout-form" id="checkout-form">
           <label>
-            Customer name
-            <input type="text" name="customerName" placeholder="Your full name" required>
+            Nombre completo
+            <input type="text" name="customerName" placeholder="Tu nombre completo" required>
           </label>
           <label>
-            Phone number
-            <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required>
+            Número de teléfono
+            <input type="tel" name="phone" placeholder="+34 600 000 000" required>
           </label>
 
           <fieldset class="order-type-fieldset">
-            <legend>Order type</legend>
+            <legend>Tipo de pedido</legend>
             <div class="order-type-toggle">
               <label class="order-type-option">
                 <input type="radio" name="orderType" value="delivery" checked>
-                <span>Delivery</span>
+                <span>A domicilio</span>
               </label>
               <label class="order-type-option">
                 <input type="radio" name="orderType" value="dine-in">
-                <span>Dine-in</span>
+                <span>En el local</span>
               </label>
             </div>
           </fieldset>
 
           <div class="order-location-fields">
             <label id="delivery-field" class="order-location-field is-visible">
-              Delivery address
-              <input type="text" name="deliveryAddress" placeholder="Street, building, apartment">
+              Dirección de entrega
+              <input type="text" name="deliveryAddress" placeholder="Calle, número, piso, portal">
             </label>
 
             <label id="table-field" class="order-location-field">
-              Table number
-              <input type="text" name="tableNumber" placeholder="e.g. 12">
+              Número de mesa
+              <input type="text" name="tableNumber" placeholder="p. ej. 12">
             </label>
           </div>
 
-          <button type="submit" class="btn btn-full">Confirm order</button>
+          <button type="submit" class="btn btn-full">Confirmar Pedido</button>
           <p class="form-message" id="checkout-message" aria-live="polite"></p>
         </form>
       </div>
@@ -357,13 +508,13 @@
           <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
       </div>
-      <p class="eyebrow">Order received</p>
-      <h2 id="order-success-title">Thank you for your order! 🍕</h2>
+      <p class="eyebrow">Pedido recibido</p>
+      <h2 id="order-success-title">¡Gracias por tu pedido! 🎉</h2>
       <p class="order-success-text">
-        Your order has been prepared. We redirected you to WhatsApp to send the receipt.
-        We will confirm it as soon as possible!
+        Te hemos redirigido a WhatsApp para enviar los detalles de tu pedido.
+        Lo confirmaremos tan pronto como recibamos tu mensaje.
       </p>
-      <button type="button" class="btn btn-full" id="order-success-close">Back to menu</button>
+      <button type="button" class="btn btn-full" id="order-success-close">Volver a la carta</button>
     </div>
   </div>
 
